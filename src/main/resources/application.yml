@@ -1,0 +1,44 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    consumer:
+      # 消费者群组ID，发布-订阅模式，即如果一个生产者，多个消费者都要消费，那么需要定义自己的群组，同一群组内的消费者只有一个能消费到消息。
+      group-id: jlDB
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    bootstrap-servers: 127.0.0.1:9092
+    # 当每一批poll()的数据被消费者监听器（ListenerConsumer）处理之后, 手动调用Acknowledgment.acknowledge()后提交
+    listener:
+      ack-mode: manual
+  #测试同步到本地数据库
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test_case?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    host: smtp.yueguanjia.com
+    username: ping@yueguanjia.com
+    password: Yguanjia123
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+
+logging:
+  level:
+      org:
+        jooq:
+          tools:
+            LoggerListener: debug
+
+
+
+
