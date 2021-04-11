@@ -36,17 +36,17 @@ public class DefaultEntryHandler implements EntryHandler<Map<String, Object>> {
 
     @Override
     public void insert(Map<String, Object> map, String tableName) {
-        logger.info("增加 {}", map);
+        logger.warn("增加 {}", map);
         List<Field<Object>> fields = map.keySet().stream().map(DSL::field).collect(Collectors.toList());
         List<Param<Object>> values = map.values().stream().map(DSL::value).collect(Collectors.toList());
         int execute = dsl.insertInto(table(tableName)).columns(fields).values(values).execute();
-        logger.info("执行结果 {}", execute);
+        logger.warn("执行结果 {}", execute);
     }
 
     @Override
     public void update(Map<String, Object> before, Map<String, Object> after, String tableName) {
-        logger.info("修改 before {}", before);
-        logger.info("修改 after {}", after);
+        logger.warn("修改 before {}", before);
+        logger.warn("修改 after {}", after);
         Map<Field<Object>, Object> map = after.entrySet().stream().filter(entry -> before.get(entry.getKey()) != null)
                 .collect(Collectors.toMap(entry -> field(entry.getKey()), Map.Entry::getValue));
         // 如果有修改主键的情况
@@ -59,18 +59,19 @@ public class DefaultEntryHandler implements EntryHandler<Map<String, Object>> {
 
     @Override
     public void delete(Map<String, Object> map, String tableName) {
-        logger.info("删除 {}", map);
+        logger.warn("删除 {}", map);
         dsl.delete(table(tableName)).where(field("id").eq(map.get("id"))).execute();
     }
 
     @Override
     public void ddl(String ddl) {
-        logger.info("ddl操作：{}", ddl);
+        logger.warn("ddl操作：{}", ddl);
         dsl.execute(ddl);
     }
 
     @Override
     public void truncate(String tableName){
+        logger.warn("dsl操作：{}", tableName);
         dsl.truncate(tableName);
     }
 }
