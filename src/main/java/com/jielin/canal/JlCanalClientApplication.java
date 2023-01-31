@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JlCanalClientApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(JlCanalClientApplication.class, args);
     }
