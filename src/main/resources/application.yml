@@ -9,20 +9,20 @@ spring:
       enable-auto-commit: false
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    bootstrap-servers: 192.168.1.127:9092
+    bootstrap-servers: 127.0.0.1:9092
     # 当每一批poll()的数据被消费者监听器（ListenerConsumer）处理之后, 手动调用Acknowledgment.acknowledge()后提交
     listener:
       ack-mode: manual
   #测试同步到本地数据库
   datasource:
-    url: jdbc:mysql://ylife.tpddns.cn:3306/jl-log?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
-    username: jielin
-    password: Yguanjia123
+    url: jdbc:mysql://127.0.0.1:3306/jl-log?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
-    host: smtp.yueguanjia.com
-    username: ping@yueguanjia.com
-    password: Yguanjia123
+    host: xxx
+    username: xxx
+    password: xxx
     properties:
       mail:
         smtp:
